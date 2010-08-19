@@ -20,6 +20,13 @@ cp -r ~/BaseInstall2.4.1/themes ~/Sites/$PREVIEW_NAME/themes
 cp -r ~/BaseInstall2.4.1/.htaccess ~/Sites/$PREVIEW_NAME/.htaccess
 echo "Done."
 
+echo "Symbolically linking the other necessary components from the core"
+ln -s ~/BaseInstall2.4.1/sapphire/ ~/Sites/$PREVIEW_NAME/sapphire 
+ln -s ~/BaseInstall2.4.1/cms/ ~/Sites/$PREVIEW_NAME/cms 
+ln -s ~/BaseInstall2.4.1/googlesitemaps/ ~/Sites/$PREVIEW_NAME/googlesitemaps 
+ln -s ~/BaseInstall2.4.1/index.php ~/Sites/$PREVIEW_NAME/index.php
+echo "Done."
+
 echo "Changing the db in the _config.php file"
 echo "Done."
 
