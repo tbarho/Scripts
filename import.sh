@@ -24,7 +24,7 @@ tar -zxvf "$INPUT_FILE" -C"$OUTPUT_DIR"
 echo "Dropping old database"
 mysql -e"DROP DATABASE IF EXISTS $DATABASE;" -u root -p"root"
 
-echo "Create datase"
+echo "Create database"
 mysql -e"CREATE DATABASE $DATABASE;" -u root -p"root"
 
 echo "Install database"
