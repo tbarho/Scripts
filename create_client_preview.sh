@@ -44,7 +44,7 @@ echo "Adding some module files via symlink."
 echo "Done."
 
 echo "Running a wget on the URL http://localhost/$PREVIEW_NAME to  install the DB"
-wget -O ~/"$PREVIEW_NAME"-build-verification.html http://localhost/"$PREVIEW_NAME"/dev/build?flush=1
+/usr/local/bin/wget -O ~/Sites/"$PREVIEW_NAME"/build-verification.html http://localhost/"$PREVIEW_NAME"/dev/build?flush=1 2>&1
 echo "Done."
 
 
