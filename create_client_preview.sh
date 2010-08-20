@@ -9,6 +9,10 @@ cd ~
 cd Sites/
 echo "Done."
 
+echo "Creating the DB named '$PREVIEW_NAME'"
+mysql -e"CREATE DATABASE $PREVIEW_NAME;" -u root -p"root"
+echo "Done."
+
 echo "Creating the '$PREVIEW_NAME' directory..."
 mkdir ~/Sites/$PREVIEW_NAME
 echo "Done."
@@ -28,15 +32,14 @@ ln -s ~/BaseInstall2.4.1/index.php ~/Sites/$PREVIEW_NAME/index.php
 echo "Done."
 
 echo "Changing the db in the _config.php file"
+sed 's/{PREVIEW_NAME}/"$PREVIEW_NAME"/g' ~/Sites/"$PREVIEW_NAME"/mysite/_config.php
 echo "Done."
 
-echo "Adding some module files."
-echo "Done."
-
-echo "Creating the DB named '$PREVIEW_NAME'"
+echo "Adding some module files via symlink."
 echo "Done."
 
 echo "Running a wget on the URL http://localhost/$PREVIEW_NAME to  install the DB"
+wget -O ~/"$PREVIEW_NAME"-build-verification.html http://localhost/"$PREVIEW_NAME"/dev/build?flush=1
 echo "Done."
 
 echo "Deleting everything when I'm done"
