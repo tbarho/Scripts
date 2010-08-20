@@ -47,7 +47,5 @@ echo "Running a wget on the URL http://localhost/$PREVIEW_NAME to  install the D
 wget -O ~/"$PREVIEW_NAME"-build-verification.html http://localhost/"$PREVIEW_NAME"/dev/build?flush=1
 echo "Done."
 
-echo "Deleting everything when I'm done"
 
-echo "Complete."
 
