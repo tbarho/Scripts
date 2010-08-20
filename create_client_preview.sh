@@ -32,7 +32,7 @@ ln -s ~/BaseInstall2.4.1/index.php ~/Sites/$PREVIEW_NAME/index.php
 echo "Done."
 
 echo "Changing the db in the _config.php file"
-sed 's/{PREVIEW_NAME}/"$PREVIEW_NAME"/g' ~/Sites/"$PREVIEW_NAME"/mysite/_config.php
+sed 's/{PREVIEW_NAME}/$PREVIEW_NAME/g' ~/Sites/$PREVIEW_NAME/mysite/_config.php
 echo "Done."
 
 echo "Adding some module files via symlink."
