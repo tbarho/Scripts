@@ -5,7 +5,7 @@ PREVIEW_NAME=$1
 echo "'PREVIEW_NAME=$PREVIEW_NAME'"
 
 function usage {
-    echo "$0  [database] [output_file] [input directory]";
+    echo "$0  [preview name]";
     exit 1;
 }
 
