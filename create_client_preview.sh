@@ -4,10 +4,14 @@ PREVIEW_NAME=$1
 
 echo "'PREVIEW_NAME=$PREVIEW_NAME'"
 
-echo "Moving the the users /Sites directory..."
-cd ~
-cd Sites/
-echo "Done."
+function usage {
+    echo "$0  [database] [output_file] [input directory]";
+    exit 1;
+}
+
+if [ $# != 1 ]; then
+    usage
+fi
 
 echo "Creating the DB named '$PREVIEW_NAME'"
 mysql -e"CREATE DATABASE $PREVIEW_NAME;" -u root -p"root"
@@ -32,7 +36,8 @@ ln -s ~/BaseInstall2.4.1/index.php ~/Sites/$PREVIEW_NAME/index.php
 echo "Done."
 
 echo "Changing the db in the _config.php file"
-sed 's/{PREVIEW_NAME}/$PREVIEW_NAME/g' ~/Sites/$PREVIEW_NAME/mysite/_config.php
+rm ~/Sites/$PREVIEW_NAME/mysite/_config.php
+sed "s/{PREVIEW_NAME}/$PREVIEW_NAME/g" ~/BaseInstall2.4.1/mysite/_config.php > ~/Sites/$PREVIEW_NAME/mysite/_config.php
 echo "Done."
 
 echo "Adding some module files via symlink."
