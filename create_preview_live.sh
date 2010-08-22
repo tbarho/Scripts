@@ -42,5 +42,25 @@ fi
 	#Delete the temp folder
 	rm -rf /tmpprojects/$PROJECT_ID
 	
-	#Export the newly created project to the live preview site
+#Get the preview site working
+	
+	#Export the $PROJECT_ID to the web root as a new site
 	svn export file:///var/svn/$PROJECT_ID /var/www/html/$PROJECT_ID
+	
+	#Create the database
+	mysql -e"CREATE DATABASE $PROJECT_ID;" -u root -p"password"
+	
+	#Edit the config to point to the new database
+	rm /var/www/html/$PROJECT_ID/mysite/_config.php
+	sed "s/{PREVIEW_NAME}/$PROJECT_ID/g" /var/www/Core2.4.1/trunk/mysite/_config.php > /var/www/html/$PROJECT_ID/mysite/_config.php
+	
+	#Add the symbolic links to the working core
+	ln -s /var/www/Core2.4.1/trunk/sapphire/ /var/www/html/$PROJECT_ID/sapphire 
+	ln -s /var/www/Core2.4.1/trunk/cms/ /var/www/html/$PROJECT_ID/cms 
+	ln -s /var/www/Core2.4.1/trunk/googlesitemaps/ /var/www/html/$PROJECT_ID/googlesitemaps 
+	ln -s /var/www/Core2.4.1/trunk/index.php /var/www/html/$PROJECT_ID/index.php
+	
+	#Run a wget to build the database
+	/usr/local/bin/wget -O /var/www/html/"$PROJECT_ID"/build-verification.html http://www.sitesprocket.com/"$PROJECT_ID"/dev/build?flush=1 2>&1
+
+
