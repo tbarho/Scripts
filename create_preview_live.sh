@@ -61,6 +61,6 @@ fi
 	ln -s /var/www/Core2.4.1/trunk/index.php /var/www/html/$PROJECT_ID/index.php
 	
 	#Run a wget to build the database
-	/usr/local/bin/wget -O /var/www/html/"$PROJECT_ID"/build-verification.html http://www.sitesprocket.com/"$PROJECT_ID"/dev/build?flush=1 2>&1
+	/usr/bin/wget -O /var/www/html/"$PROJECT_ID"/build-verification.html http://www.sitesprocket.com/"$PROJECT_ID"/dev/build?flush=1 2>&1
 
 
