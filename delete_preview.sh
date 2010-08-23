@@ -15,6 +15,6 @@ fi
 
 
 
-#Delete the web site
-rm -rf /var/www/html/$PROJECT_ID
+#Delete the temp folder
+rm -rf /tempProjects/$PROJECT_ID
 
