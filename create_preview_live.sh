@@ -24,5 +24,12 @@ mkdir /tempProjects/$PROJECT_ID/trunk
 
 
 
+#Copy the files from the latest built Core
+
+cp -r /var/www/Core2.4.1/assets /tempProjects/$PROJECT_ID/trunk/assets 
+cp -r /var/www/Core2.4.1/mysite /tempProjects/$PROJECT_ID/trunk/mysite 
+cp -r /var/www/Core2.4.1/themes /tempProjects/$PROJECT_ID/trunk/themes 
+cp -r /var/www/Core2.4.1/.htaccess /tempProjects/$PROJECT_ID/trunk/.htaccess
+
 
 
