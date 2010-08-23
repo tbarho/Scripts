@@ -73,6 +73,10 @@ ln -s /var/www/Core2.4.1/cms/ /var/www/html/$PROJECT_ID/cms
 ln -s /var/www/Core2.4.1/googlesitemaps/ /var/www/html/$PROJECT_ID/googlesitemaps 
 ln -s /var/www/Core2.4.1/index.php /var/www/html/$PROJECT_ID/index.php
 
+#TODO:
+#Fix www on CentOS apache
+#Add wget to build database
+
 
 
 
