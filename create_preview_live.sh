@@ -49,6 +49,14 @@ svn import /tempProjects/$PROJECT_ID file:///var/svn/$PROJECT_ID -m "Initial Imp
 rm -rf /tempProjects/$PROJECT_ID
 
 
+#Create the database
+echo "Dropping old database"
+mysql -e"DROP DATABASE IF EXISTS $PROJECT_ID;" -u root -p"Redrooster8"
+
+echo "Create database"
+mysql -e"CREATE DATABASE $PROJECT_ID;" -u root -p"Redrooster8"
+
+
 
 
 
