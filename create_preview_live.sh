@@ -42,7 +42,7 @@ sed "s/{PREVIEW_NAME}/$PROJECT_ID/g" /var/www/Core2.4.1/mysite/_config.php > /te
 
 #Import the new Project into SVN
 
-svn import /tempProjects/$PROJECT_ID file:///var/svn/$PROJECT_ID - "Initial Import of Client Project $PROJECT_ID"
+svn import /tempProjects/$PROJECT_ID file:///var/svn/$PROJECT_ID -m "Initial Import of Client Project $PROJECT_ID"
 
 
 
