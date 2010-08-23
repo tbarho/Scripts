@@ -1,6 +1,6 @@
 #/bin/bash
 
-$PROJECT_ID=$1
+PROJECT_ID=$1
 
 echo "'PROJECT_ID=$PROJECT_ID'"
 
