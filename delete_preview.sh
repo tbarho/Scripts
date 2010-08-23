@@ -20,3 +20,6 @@ svn delete file:///var/svn/$PROJECT_ID -m "Deleting $PROJECT_ID"
 #Remove the database that was created
 mysql -e"DROP DATABASE IF EXISTS $PROJECT_ID;" -u root -p"Redrooster8"
 
+#Remove the WWW preview site
+rm -rf /var/www/html/$PROJECT_ID
+
