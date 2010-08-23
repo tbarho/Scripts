@@ -57,6 +57,10 @@ echo "Create database"
 mysql -e"CREATE DATABASE $PROJECT_ID;" -u root -p"Redrooster8"
 
 
+#Export the project from SVN to the web root
+svn export file:///var/svn/$PROJECT_ID /var/www/html/$PROJECT_ID
+
+
 
 
 
