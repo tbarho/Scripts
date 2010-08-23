@@ -65,7 +65,7 @@ svn export file:///var/svn/$PROJECT_ID /var/www/html/$PROJECT_ID
 
 #Symbolic links to Core
 ln -s /var/www/Core2.4.1/sapphire/ /var/www/html/$PROJECT_ID/sapphire 
-ln -s /var/www/cms/ /var/www/html/$PROJECT_ID/cms 
+ln -s /var/www/Core2.4.1/cms/ /var/www/html/$PROJECT_ID/cms 
 ln -s /var/www/Core2.4.1/googlesitemaps/ /var/www/html/$PROJECT_ID/googlesitemaps 
 ln -s /var/www/Core2.4.1/index.php /var/www/html/$PROJECT_ID/index.php
 
