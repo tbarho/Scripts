@@ -45,5 +45,11 @@ sed "s/{PREVIEW_NAME}/$PROJECT_ID/g" /var/www/Core2.4.1/mysite/_config.php > /te
 svn import /tempProjects/$PROJECT_ID file:///var/svn/$PROJECT_ID -m "Initial Import of Client Project $PROJECT_ID"
 
 
+#Delete the temp directory
+rm -rf /tempProjects/$PROJECT_ID
+
+
+
+
 
 
