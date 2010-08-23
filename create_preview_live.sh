@@ -35,7 +35,7 @@ cp -r /var/www/Core2.4.1/.htaccess /tempProjects/$PROJECT_ID/trunk/.htaccess
 
 #Set the database in the _config.php file with sed
 
-rm /tmpProjects/$PROJECT_ID/trunk/mysite/_config.php
+rm /tempProjects/$PROJECT_ID/trunk/mysite/_config.php
 sed "s/{PREVIEW_NAME}/$PROJECT_ID/g" /var/www/Core2.4.1/mysite/_config.php > /tempProjects/$PROJECT_ID/trunk/mysite/_config.php
 
 
