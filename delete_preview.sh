@@ -15,6 +15,9 @@ fi
 
 
 
-#Delete the temp folder
+#Delete the temp site
 rm -rf /tempProjects/$PROJECT_ID
+
+#Remove the project from SVN
+svn delete file://var/svn/$PROJECT_ID -m "Deleting $PROJECT_ID"
 
