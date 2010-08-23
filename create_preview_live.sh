@@ -39,3 +39,11 @@ rm /tempProjects/$PROJECT_ID/trunk/mysite/_config.php
 sed "s/{PREVIEW_NAME}/$PROJECT_ID/g" /var/www/Core2.4.1/mysite/_config.php > /tempProjects/$PROJECT_ID/trunk/mysite/_config.php
 
 
+
+#Import the new Project into SVN
+
+svn import /tempProjects/$PROJECT_ID file:///var/svn/$PROJECT_ID - "Initial Import of Client Project $PROJECT_ID"
+
+
+
+
