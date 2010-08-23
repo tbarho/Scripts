@@ -18,9 +18,3 @@ fi
 #Delete the web site
 rm -rf /var/www/html/$PROJECT_ID
 
-#Remove the project from SVN
-svn delete file://var/svn/$PROJECT_ID -m "Deleting $PROJECT_ID"
-
-
-#Delete the database
-mysql -e"DROP DATABASE IF EXISTS $PROJECT_ID;" -u root -p"Redrooster8"
