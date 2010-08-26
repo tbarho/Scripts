@@ -13,6 +13,7 @@ if [ $# != 1 ]; then
     usage
 fi
 
+#Check if the file exists in /var/www/sites.  If it does, exit.
 if [ -e "/var/www/sites/$PROJECT_ID" ]; then
 	echo "There is already a directory named $PROJECT_ID in /var/www/sites.  Exiting..."
 	exit;
