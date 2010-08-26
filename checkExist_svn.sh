@@ -14,6 +14,7 @@ if [ $# != 1 ]; then
     usage
 fi
 
+#check if the project exists in SVN.  If it does, exit.
 svn ls file:///var/svn/$PROJECT_ID &> /dev/null
 RESULT=$?
 if [ $RESULT -eq 0 ]; then
