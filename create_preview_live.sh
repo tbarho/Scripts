@@ -62,20 +62,22 @@ mysql -e"CREATE DATABASE $PROJECT_ID;" -u root -p"Redrooster8"
 
 #Export the project from SVN to the web root
 
-svn export file:///var/svn/$PROJECT_ID/trunk /var/www/html/$PROJECT_ID
+svn export file:///var/svn/$PROJECT_ID/trunk /var/www/sites/$PROJECT_ID
 
 
 
 #Symbolic links to Core
 
-ln -s /var/www/Core2.4.1/sapphire/ /var/www/html/$PROJECT_ID/sapphire 
-ln -s /var/www/Core2.4.1/cms/ /var/www/html/$PROJECT_ID/cms 
-ln -s /var/www/Core2.4.1/googlesitemaps/ /var/www/html/$PROJECT_ID/googlesitemaps 
-ln -s /var/www/Core2.4.1/index.php /var/www/html/$PROJECT_ID/index.php
+ln -s /var/www/Core2.4.1/sapphire/ /var/www/sites/$PROJECT_ID/sapphire 
+ln -s /var/www/Core2.4.1/cms/ /var/www/sites/$PROJECT_ID/cms 
+ln -s /var/www/Core2.4.1/googlesitemaps/ /var/www/sites/$PROJECT_ID/googlesitemaps 
+ln -s /var/www/Core2.4.1/index.php /var/www/sites/$PROJECT_ID/index.php
 
-#TODO:
-#Fix www on CentOS apache
-#Add wget to build database
+
+
+#Run a wget to build the database
+
+/usr/bin/wget -O /var/www/sites/"$PROJECT_ID"/build-verification.html http://sites.sitesprocket.com/"$PROJECT_ID"/dev/build?flush=1 2>&1
 
 
 
