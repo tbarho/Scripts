@@ -21,5 +21,5 @@ svn delete file:///var/svn/$PROJECT_ID -m "Deleting $PROJECT_ID"
 mysql -e"DROP DATABASE IF EXISTS $PROJECT_ID;" -u root -p"Redrooster8"
 
 #Remove the WWW preview site
-rm -rf /var/www/html/$PROJECT_ID
+rm -rf /var/www/sites/$PROJECT_ID
 
