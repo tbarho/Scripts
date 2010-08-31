@@ -1,15 +1,30 @@
-#/bin/bash
+#!/bin/bash
 
-MODULES_ARRAY=("$@")
+PROJECTID=$1
+DBNAME=$2
+SCRIPTS=$3
 
-function usage {
-        echo "$0 ( moduleX moduleY etc... )";
-        exit 1;
-}
+IFS=$' '
 
-if [ $# < 1 ]; then
-        usage
-fi
+#SOME HOW PARSE $3 AND STORE INDIVIDUAL VALUE IN THE STRING SEPEREATE BY SPACE INTO AN ARRAY
+ARRAY=$3
 
-#echo the contents of the array with a do
-echo "${MODULES_ARRAY[0]} ${MODULES_ARRAY[1]}"
+#use $@ to print out all arguments at once
+#echo $@ ' -> echo $@'
+#echo $# ' -> number of arguments'
+
+#echo $VAR
+
+#for ((i = 2; i < "${#ARRAY[@]}"; i++))
+#do
+#	echo ${ARRAY[i]}	
+#done
+
+echo $PROJECTID
+
+echo $DBNAME
+
+for i in $ARRAY
+do
+	echo "$i"	
+done
