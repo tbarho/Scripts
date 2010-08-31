@@ -19,7 +19,7 @@ if [ $# != 2 ]; then
 fi
 
 #Set a date for timestamping files that need it
-date=`date +%m-%d-%Y-%H-%M-%S`
+date="`date +%m-%d-%Y-%H-%M-%S`"
 
 #Check if the existing files exist, if they don't fail
 if [ ! -e "$existingFiles" ]; then
