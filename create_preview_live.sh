@@ -1,19 +1,24 @@
 #/bin/bash
 
+
 PROJECT_ID=$1
+MYSQL_PWD=$2
 
 echo "'PROJECT_ID=$PROJECT_ID'"
 
 function usage {
-    echo "$0  [project id]";
+    echo "$0  [project id] [mysql pwd]";
     exit 1;
 }
 
-if [ $# != 1 ]; then
+if [ $# != 2 ]; then
     usage
 fi
 
-
+if [! mysql -u root --password=MYSQL_PWD]; then
+    echo "Your MySQL Password was bad.";
+    exit 1;
+fi
 
 #Build the scaffolding for the repo
 
