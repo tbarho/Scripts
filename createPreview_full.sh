@@ -40,7 +40,7 @@ done
 
 
 #Check if the project exists in SVN.  If it does, exit.
-svn ls file:///var/svn/$PROJECT_ID &> /dev/null
+svn ls file:///var/svn/client_sites/$PROJECT_ID &> /dev/null
 RESULT=$?
 if [ $RESULT -eq 0 ]; then
 	echo "SVN repo for $PROJECT_ID already exists. Exiting..."
@@ -66,38 +66,37 @@ fi
 
 
 #Build the scaffolding for the repo
-
-mkdir /tempProjects/$PROJECT_ID
-mkdir /tempProjects/$PROJECT_ID/branches
-mkdir /tempProjects/$PROJECT_ID/tags
-mkdir /tempProjects/$PROJECT_ID/trunk
-
+mkdir /var/www/tmp_$PROJECT_ID
+mkdir /var/www/tmp_$PROJECT_ID/branches
+mkdir /var/www/tmp_$PROJECT_ID/tags
+mkdir /var/www/tmp_$PROJECT_ID/trunk
+mkdir /var/www/tmp_$PROJECT_ID/backup
 
 
 #Copy the files from the latest built Core
 
-cp -r /var/www/Core2.4.1/assets /tempProjects/$PROJECT_ID/trunk/assets 
-cp -r /var/www/Core2.4.1/mysite /tempProjects/$PROJECT_ID/trunk/mysite 
-cp -r /var/www/Core2.4.1/themes /tempProjects/$PROJECT_ID/trunk/themes 
-cp -r /var/www/Core2.4.1/.htaccess /tempProjects/$PROJECT_ID/trunk/.htaccess
+cp -r /var/www/Core2.4.1/assets /var/www/tmp_$PROJECT_ID/trunk/assets 
+cp -r /var/www/Core2.4.1/mysite /var/www/tmp_$PROJECT_ID/trunk/mysite 
+cp -r /var/www/Core2.4.1/themes /var/www/tmp_$PROJECT_ID/trunk/themes 
+cp -r /var/www/Core2.4.1/.htaccess /var/www/tmp_$PROJECT_ID/trunk/.htaccess
 
 
 
 #Set the database in the _config.php file with sed
 
-rm /tempProjects/$PROJECT_ID/trunk/mysite/_config.php
-sed "s/{PREVIEW_NAME}/$PROJECT_ID/g" /var/www/Core2.4.1/mysite/_config.php > /tempProjects/$PROJECT_ID/trunk/mysite/_config.php
+rm /var/www/tmp_$PROJECT_ID/trunk/mysite/_config.php
+sed "s/{PREVIEW_NAME}/$PROJECT_ID/g" /var/www/Core2.4.1/mysite/_config.php > /var/www/tmp_$PROJECT_ID/trunk/mysite/_config.php
 
 
 
 #Import the new Project into SVN
 
-svn import /tempProjects/$PROJECT_ID file:///var/svn/$PROJECT_ID -m "Initial Import of Client Project $PROJECT_ID"
+svn import /var/www/tmp_$PROJECT_ID file:///var/svn/client_sites/$PROJECT_ID -m "Initial Import of Client Project $PROJECT_ID"
 
 
 #Delete the temp directory
 
-rm -rf /tempProjects/$PROJECT_ID
+rm -rf /var/www/tmp_$PROJECT_ID
 
 
 
@@ -112,7 +111,7 @@ mysql -e"CREATE DATABASE $PROJECT_ID;" -u root -p"Redrooster8"
 
 #Export the project from SVN to the web root
 
-svn export file:///var/svn/$PROJECT_ID/trunk /var/www/sites/$PROJECT_ID
+svn export file:///var/svn/client_sites/$PROJECT_ID/trunk /var/www/sites/$PROJECT_ID
 
 
 
