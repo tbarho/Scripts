@@ -3,14 +3,14 @@
 #Assuming we have the .sql dump and site files in a folder
 
 #Pass in the existing location of the site files
-existingFiles=$1
+importFile=$1
 
 #Pass in the name of the client site (for svn and URL)
 siteName=$2
 
 #Make sure we have the vars, if not, exit
 function usage {
-	echo "$0 [ location of files ] [ site name ]";
+	echo "$0 [ /path/to/import/file ] [ site name ]";
 	exit;
 }
 
@@ -22,11 +22,11 @@ fi
 date="`date +%m-%d-%Y-%H-%M-%S`"
 
 #Check if the existing files exist, if they don't fail
-if [ ! -e "$existingFiles" ]; then
-	echo "Import files do not exist where you said they were.  Exiting..."
+if [ ! -e "$importFile" ]; then
+	echo "Could not find $importFile.  Exiting..."
 	exit;
 else
-	echo "Import files exist.  Proceeding...."
+	echo "$importFile exists.  Proceeding...."
 fi 
 
 
@@ -60,6 +60,8 @@ else
 	echo "$siteName has room to exist in /var/www/sites.  Proceeding...."
 fi
 
+echo "All the checks passed.  Proceeding...."
+
 
 #Create the folder structure for svn (trunk, branches, tags, build)
 echo "Creating the folder structure for the new $siteName SVN project...."
@@ -69,10 +71,14 @@ mkdir /tmp/site_tmp/$siteName/branches
 mkdir /tmp/site_tmp/$siteName/tags
 mkdir /tmp/site_tmp/$siteName/build
 
+#Move the tarball to the tmp folder
+#echo "Moving $importFile to /tmp/site_tmp/$siteName/trunk/$siteName.tar.gz"
+#mv "$importFile" /tmp/site_tmp/$siteName/trunk/"$siteName".tar.gz
 
-#Copy the site files into the trunk
-echo "Copying site files into the trunk...."
-cp -r $existingFiles /tmp/site_temp/$siteName/trunk
+#Extract the .tar.gz file to /tmp/site_tmp/$siteName/trunk
+echo "Extracting $importFile to /tmp/site_tmp/$siteName/trunk....."
+tar -zxvf "$importFile" -C"/tmp/site_tmp/$siteName/trunk"
+
 
 #Move any .sql files into the build folder for SVN
 echo "Moving .sql files from /trunk to /build...."
@@ -97,7 +103,7 @@ svn import /tmp/site_tmp/$siteName file:///var/svn/$siteName -m "IMPORT - Initia
 #Drop the temp site folder, don't drop the original yet, cause we still need the DB file
 echo "Dropping temporary folders and import files...."
 rm -rf /tmp/site_tmp/$siteName
-rm -rf $existingFiles
+#rm -rf $importFile
 
 #Export the svn trunk to /var/www/sites
 echo "Exporting from SVN...."
