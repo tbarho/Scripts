@@ -86,6 +86,12 @@ else
 	exit;
 fi
 
+# Run another check to see if an .htaccess file exists.  If it doesn't, export the one from the core for initial import
+if [ ! -e "/var/www/tmp_$PROJECT_ID/trunk/.htaccess" ]; then
+	echo "Did not find .htaccess file, so adding one to the core...."
+	svn export file:///var/svn/Core2.4.1/trunk/.htaccess /var/www/tmp_$PROJECT_ID/trunk/.htaccess
+fi 
+
 # Move any sql files to the backup directory
 echo "Moving all .sql files to the /backup directory...."
 mv /var/www/tmp_$PROJECT_ID/trunk/*.sql /var/www/tmp_$PROJECT_ID/backup
