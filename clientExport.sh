@@ -45,7 +45,17 @@ fi
 
 # Now, assuming we have found an SVN repo, and we have found the database we move forward
 
-# First we need to create a temporary directory to house the export
+# Before we start exporting the project, we need to check to see if a deploy script already exists in the SVN backup folder for the site.  If it does, we are going to replace it with a new one
+svn ls file:///var/svn/client_sites/$PROJECT_ID/backup|egrep 'deploy' &> /dev/null
+RESULT=$?
+if [ $RESULT -eq 0 ]; then
+        echo "Found a deploy script.  Deleting...."
+        svn delete file:///var/svn/client_sites/$PROJECT_ID/backup/$PROJECT_ID.deploy.tar.gz -m "Deleting old backup."
+else
+        echo "Did not find a deploy script.  Proceeding...."
+fi
+
+# Now we need to create a temporary directory to house the export
 echo "Creating the temp directory for $PROJECT_ID export...."
 #mkdir /var/www/tmp_$PROJECT_ID
 
